@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Event 2025</title>
+    <title>College Cultural Event 2025</title>
     <style>
         * {
             margin: 0;
@@ -22,7 +22,20 @@
             background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: white;
             text-align: center;
-            padding: 2rem 1rem; /* Reduced height */
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .container {
@@ -33,21 +46,27 @@
         
         .event-section {
             background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2.5rem;
             width: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-section:hover {
+            transform: translateY(-5px);
         }
         
         .event-day {
-            padding: 2rem;
+            padding: 2.5rem;
         }
         
         .event-day h2 {
             color: #333;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.8rem;
             border-bottom: 2px solid #6e8efb;
+            font-size: 1.8rem;
         }
         
         .event-table {
@@ -56,8 +75,12 @@
         }
         
         .event-table td, .event-table th {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
+            padding: 15px 18px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .event-table tr:hover {
+            background-color: #f9f9f9;
         }
         
         .event-table tr:last-child td {
@@ -72,70 +95,227 @@
         
         .register-btn {
             display: block;
-            width: 250px;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            background: #6e8efb;
+            width: 280px;
+            margin: 3rem auto;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
             color: white;
             text-align: center;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
-            border-radius: 4px;
+            font-size: 1.3rem;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
         }
         
         .register-btn:hover {
-            background: #5c7adc;
+            background: linear-gradient(135deg, #5c7adc, #9669d3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
         }
         
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 5px solid #6e8efb;
         }
+        
+        /* Changed event-name styling from blue to black */
+        .event-name {
+            position: relative;
+            cursor: pointer;
+            color: #333; /* Changed from #6e8efb to #333 (black) */
+            text-decoration: underline dotted;
+            font-weight: 600;
+            padding: 5px 0;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .event-name:hover {
+            color: #6e8efb; /* Color changes to blue on hover for better user experience */
+        }
+        
+        /* Modified to position dropdown on the right */
+        .event-dropdown {
+            position: absolute;
+            display: none;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            padding: 20px;
+            width: 320px;
+            z-index: 100;
+            left: 100%; /* Changed from left: 0 to left: 100% */
+            top: 0; /* Changed from top: 100% to top: 0 */
+            margin-left: 20px; /* Added margin for spacing */
+            color: #333;
+            font-size: 0.95rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        /* Removed the override for the last two events */
+        /* .event-table tr:nth-last-child(-n+2) .event-dropdown {
+            bottom: 100%;
+            top: auto;
+        } */
+        
+        .event-dropdown h4 {
+            margin-bottom: 12px;
+            color: #6e8efb;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .event-dropdown p {
+            margin-bottom: 12px;
+        }
+        
+        .event-dropdown .location, 
+        .event-dropdown .presenter {
+            font-style: italic;
+            color: #555;
+            padding-left: 5px;
+            border-left: 3px solid #6e8efb;
+        }
+        
+        .event-name:hover .event-dropdown {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-10px); } /* Changed Y to X axis for horizontal animation */
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Removed modified animation for bottom-positioned dropdowns as they're now on the right */
+        /* .event-table tr:nth-last-child(-n+2) .event-name:hover .event-dropdown {
+            animation: fadeInBottom 0.3s ease;
+        } */
+        
+        /* @keyframes fadeInBottom {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        } */
         
         @media (max-width: 768px) {
             .event-time {
                 width: 40%;
+            }
+            
+            .event-dropdown {
+                width: 280px;
+                left: -50px; /* Revert to showing below on mobile */
+                top: 100%;
+                margin-left: 0;
+            }
+            
+            .event-day {
+                padding: 1.5rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>College Event 2025</h1>
-        <p>Join us for an amazing two-day experience!</p>
+        <h1>College Cultural Event 2025</h1>
+        <p>Join us for an amazing two-day celebration of cultural diversity!</p>
     </header>
     
     <div class="container">
         <section class="event-section">
             <div class="event-day">
-                <h2>Day 1 - March 15, 2025</h2>
+                <h2>Day 1 - April 3, 2025</h2>
                 
                 <table class="event-table">
                     <tr>
                         <td class="event-time">9:00 AM - 10:00 AM</td>
-                        <td>Opening Ceremony</td>
+                        <td>
+                            <span class="event-name">Opening Ceremony
+                                <div class="event-dropdown">
+                                    <h4>Opening Ceremony</h4>
+                                    <p class="location">Location: Main Auditorium</p>
+                                    <p>Traditional lamp lighting ceremony followed by cultural parade representing various countries and regions.</p>
+                                    <p class="presenter">Chief Guest: Ms. Aisha Rodriguez, UNESCO Cultural Ambassador</p>
+                                    <p>Opening performances include a classical dance ensemble and a multicultural choir.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">10:30 AM - 12:00 PM</td>
-                        <td>Keynote Speaker: Innovation in Technology</td>
+                        <td>
+                            <span class="event-name">Keynote Address: Cultural Heritage in Modern Times
+                                <div class="event-dropdown">
+                                    <h4>Keynote Address: Cultural Heritage in Modern Times</h4>
+                                    <p class="location">Location: Main Auditorium</p>
+                                    <p>An inspiring talk on preserving cultural heritage while embracing modern influences. Discussion on importance of cultural exchange in a globalized world.</p>
+                                    <p class="presenter">Speaker: Prof. Maya Patel, Cultural Anthropologist</p>
+                                    <p>Interactive Q&A session follows the keynote address.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">12:00 PM - 1:30 PM</td>
-                        <td>Lunch Break</td>
+                        <td>
+                            <span class="event-name">Global Food Festival
+                                <div class="event-dropdown">
+                                    <h4>Global Food Festival</h4>
+                                    <p class="location">Location: Campus Quadrangle</p>
+                                    <p>Sample authentic cuisines from over 15 countries prepared by student clubs and local restaurants.</p>
+                                    <p>Featured regions: Latin America, East Asia, South Asia, Africa, Mediterranean, and Middle East.</p>
+                                    <p>Food tokens available for purchase. Vegetarian, vegan, and halal options available.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">1:30 PM - 3:30 PM</td>
-                        <td>Workshop: Hands-on Project Development</td>
+                        <td>
+                            <span class="event-name">Workshop: Traditional Arts & Crafts
+                                <div class="event-dropdown">
+                                    <h4>Workshop: Traditional Arts & Crafts</h4>
+                                    <p class="location">Location: Arts Building, Rooms 101-105</p>
+                                    <p>Interactive sessions in multiple rooms:</p>
+                                    <p>- Room 101: Chinese Calligraphy & Brush Painting</p>
+                                    <p>- Room 102: Indian Rangoli & Henna Art</p>
+                                    <p>- Room 103: African Basket Weaving</p>
+                                    <p>- Room 104: Latin American Textile Art</p>
+                                    <p>- Room 105: Middle Eastern Mosaic Design</p>
+                                    <p>Materials provided. Take your creations home!</p>
+                                    <p>Limited to 30 participants per room. Sign-up at the venue.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">4:00 PM - 5:30 PM</td>
-                        <td>Panel Discussion: Future Trends</td>
+                        <td>
+                            <span class="event-name">Panel Discussion: Preserving Cultural Identity
+                                <div class="event-dropdown">
+                                    <h4>Panel Discussion: Preserving Cultural Identity</h4>
+                                    <p class="location">Location: Main Auditorium</p>
+                                    <p>Distinguished speakers discuss the challenges and importance of preserving cultural identities in the digital age. Topics include language preservation, indigenous rights, and cultural appropriation vs. appreciation.</p>
+                                    <p class="presenter">Moderator: Dr. James Chen</p>
+                                    <p class="presenter">Panelists: Representatives from cultural heritage organizations, indigenous communities, and academic institutions</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -143,28 +323,86 @@
         
         <section class="event-section">
             <div class="event-day">
-                <h2>Day 2 - March 16, 2025</h2>
+                <h2>Day 2 - April 4, 2025</h2>
                 
                 <table class="event-table">
                     <tr>
                         <td class="event-time">9:30 AM - 11:00 AM</td>
-                        <td>Technical Competition</td>
+                        <td>
+                            <span class="event-name">Cultural Performances Competition
+                                <div class="event-dropdown">
+                                    <h4>Cultural Performances Competition</h4>
+                                    <p class="location">Location: Main Auditorium</p>
+                                    <p>Students showcase talents in traditional and fusion performances:</p>
+                                    <p>- Traditional dances from various countries</p>
+                                    <p>- Folk music performances</p>
+                                    <p>- Cultural fusion acts</p>
+                                    <p>- Spoken word poetry in multiple languages</p>
+                                    <p>Prizes awarded for authenticity, creativity, and audience engagement.</p>
+                                    <p class="presenter">Judges: Professional artists and cultural experts</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">11:30 AM - 1:00 PM</td>
-                        <td>Industry Expert Session</td>
+                        <td>
+                            <span class="event-name">Indigenous Heritage Showcase
+                                <div class="event-dropdown">
+                                    <h4>Indigenous Heritage Showcase</h4>
+                                    <p class="location">Location: Exhibition Hall</p>
+                                    <p>Special presentation of indigenous cultures, traditions, and stories by representatives from local native communities.</p>
+                                    <p>Features storytelling sessions, traditional music, artifact displays, and discussion on contemporary indigenous issues.</p>
+                                    <p class="presenter">Special Guests: Elders from local indigenous communities</p>
+                                    <p>Respectful photography permitted with prior consent.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">1:00 PM - 2:00 PM</td>
-                        <td>Lunch Break</td>
+                        <td>
+                            <span class="event-name">International Cuisine Lunch
+                                <div class="event-dropdown">
+                                    <h4>International Cuisine Lunch</h4>
+                                    <p class="location">Location: Campus Quadrangle</p>
+                                    <p>Continuation of the global food festival featuring new dishes and demonstrations.</p>
+                                    <p>Special cooking demonstrations by local chefs.</p>
+                                    <p>Recipe booklets available for popular dishes.</p>
+                                    <p>Food tokens available for purchase.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">2:00 PM - 4:00 PM</td>
-                        <td>Networking Session & Project Showcase</td>
+                        <td>
+                            <span class="event-name">Cultural Exhibition & Marketplace
+                                <div class="event-dropdown">
+                                    <h4>Cultural Exhibition & Marketplace</h4>
+                                    <p class="location">Location: Exhibition Hall</p>
+                                    <p>Browse displays of traditional artifacts, artwork, textiles, and handicrafts from around the world.</p>
+                                    <p>Fair trade marketplace featuring artisans from various cultural backgrounds.</p>
+                                    <p>Special exhibits on cultural heritage preservation projects.</p>
+                                    <p>Proceeds from marketplace sales support scholarship fund for international students.</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="event-time">4:30 PM - 5:30 PM</td>
-                        <td>Award Ceremony & Closing</td>
+                        <td>
+                            <span class="event-name">Closing Ceremony & Cultural Fusion Performance
+                                <div class="event-dropdown">
+                                    <h4>Closing Ceremony & Cultural Fusion Performance</h4>
+                                    <p class="location">Location: Main Auditorium</p>
+                                    <p>Award presentation for competition winners.</p>
+                                    <p>Special finale performance featuring collaborative act with elements from multiple cultures.</p>
+                                    <p>Grand finale incorporates music, dance, and visual arts from various traditions in a unified performance.</p>
+                                    <p class="presenter">Performers: International student ensembles and professional artists</p>
+                                </div>
+                            </span>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -174,8 +412,8 @@
     </div>
     
     <footer>
-        <p>&copy; 2025 College Event. All Rights Reserved.</p>
-        <p>For inquiries: event@college.edu</p>
+        <p>&copy; 2025 College Cultural Event. All Rights Reserved.</p>
+        <p>For inquiries: culturalevent@college.edu</p>
     </footer>
 </body>
 </html>
