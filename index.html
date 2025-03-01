@@ -126,11 +126,10 @@
             border-top: 5px solid #6e8efb;
         }
         
-        /* Changed event-name styling from blue to black */
         .event-name {
             position: relative;
             cursor: pointer;
-            color: #333; /* Changed from #6e8efb to #333 (black) */
+            color: #333;
             text-decoration: underline dotted;
             font-weight: 600;
             padding: 5px 0;
@@ -139,10 +138,9 @@
         }
         
         .event-name:hover {
-            color: #6e8efb; /* Color changes to blue on hover for better user experience */
+            color: #6e8efb;
         }
         
-        /* Modified to position dropdown on the right */
         .event-dropdown {
             position: absolute;
             display: none;
@@ -153,20 +151,14 @@
             padding: 20px;
             width: 320px;
             z-index: 100;
-            left: 100%; /* Changed from left: 0 to left: 100% */
-            top: 0; /* Changed from top: 100% to top: 0 */
-            margin-left: 20px; /* Added margin for spacing */
+            left: 100%;
+            top: 0;
+            margin-left: 20px;
             color: #333;
             font-size: 0.95rem;
             text-align: left;
             line-height: 1.5;
         }
-        
-        /* Removed the override for the last two events */
-        /* .event-table tr:nth-last-child(-n+2) .event-dropdown {
-            bottom: 100%;
-            top: auto;
-        } */
         
         .event-dropdown h4 {
             margin-bottom: 12px;
@@ -194,19 +186,189 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-10px); } /* Changed Y to X axis for horizontal animation */
+            from { opacity: 0; transform: translateX(-10px); }
             to { opacity: 1; transform: translateX(0); }
         }
         
-        /* Removed modified animation for bottom-positioned dropdowns as they're now on the right */
-        /* .event-table tr:nth-last-child(-n+2) .event-name:hover .event-dropdown {
-            animation: fadeInBottom 0.3s ease;
-        } */
+        /* Countdown Timer Styles */
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
         
-        /* @keyframes fadeInBottom {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        } */
+        .countdown-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 0.5rem;
+            min-width: 80px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6e8efb;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #333;
+            text-transform: uppercase;
+        }
+        
+        /* Sponsors Slideshow Styles */
+        /* Sponsors Slideshow Styles */
+.sponsors-section {
+    background: transparent;
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    box-shadow: none;
+}
+
+.sponsors-title {
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #6e8efb;
+    font-size: 1.8rem;
+}
+
+.sponsors-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.sponsor-cards {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: max-content;
+    margin: 0 40px;
+}
+
+.sponsor-card {
+    background: #f9f9f9;
+    margin: 0 10px;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 250px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.sponsor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sponsor-logo {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.sponsor-name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.sponsor-description {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.slide-btn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.slide-btn:hover {
+    background: linear-gradient(135deg, #5c7adc, #9669d3);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+}
+
+.slide-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.slide-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slide-indicator.active {
+    background: #6e8efb;
+}
+
+@media (max-width: 768px) {
+    .sponsor-card {
+        width: 220px;
+    }
+    
+    .sponsors-slideshow {
+        padding: 0 30px;
+    }
+}
         
         @media (max-width: 768px) {
             .event-time {
@@ -215,7 +377,7 @@
             
             .event-dropdown {
                 width: 280px;
-                left: -50px; /* Revert to showing below on mobile */
+                left: -50px;
                 top: 100%;
                 margin-left: 0;
             }
@@ -227,6 +389,18 @@
             header h1 {
                 font-size: 2rem;
             }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-box {
+                min-width: 70px;
+            }
+            
+            .sponsor-card {
+                width: 220px;
+            }
         }
     </style>
 </head>
@@ -234,6 +408,29 @@
     <header>
         <h1>College Cultural Event 2025</h1>
         <p>Join us for an amazing two-day celebration of cultural diversity!</p>
+        
+        <!-- Countdown Timer -->
+        <div class="countdown-container">
+            <h3 class="countdown-title">Event Starts In:</h3>
+            <div class="countdown-timer">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
     </header>
     
     <div class="container">
@@ -338,8 +535,6 @@
                                     <p>- Folk music performances</p>
                                     <p>- Cultural fusion acts</p>
                                     <p>- Spoken word poetry in multiple languages</p>
-                                    <p>Prizes awarded for authenticity, creativity, and audience engagement.</p>
-                                    <p class="presenter">Judges: Professional artists and cultural experts</p>
                                 </div>
                             </span>
                         </td>
@@ -353,8 +548,7 @@
                                     <p class="location">Location: Exhibition Hall</p>
                                     <p>Special presentation of indigenous cultures, traditions, and stories by representatives from local native communities.</p>
                                     <p>Features storytelling sessions, traditional music, artifact displays, and discussion on contemporary indigenous issues.</p>
-                                    <p class="presenter">Special Guests: Elders from local indigenous communities</p>
-                                    <p>Respectful photography permitted with prior consent.</p>
+                                    
                                 </div>
                             </span>
                         </td>
@@ -382,9 +576,6 @@
                                     <h4>Cultural Exhibition & Marketplace</h4>
                                     <p class="location">Location: Exhibition Hall</p>
                                     <p>Browse displays of traditional artifacts, artwork, textiles, and handicrafts from around the world.</p>
-                                    <p>Fair trade marketplace featuring artisans from various cultural backgrounds.</p>
-                                    <p>Special exhibits on cultural heritage preservation projects.</p>
-                                    <p>Proceeds from marketplace sales support scholarship fund for international students.</p>
                                 </div>
                             </span>
                         </td>
@@ -395,11 +586,6 @@
                             <span class="event-name">Closing Ceremony & Cultural Fusion Performance
                                 <div class="event-dropdown">
                                     <h4>Closing Ceremony & Cultural Fusion Performance</h4>
-                                    <p class="location">Location: Main Auditorium</p>
-                                    <p>Award presentation for competition winners.</p>
-                                    <p>Special finale performance featuring collaborative act with elements from multiple cultures.</p>
-                                    <p>Grand finale incorporates music, dance, and visual arts from various traditions in a unified performance.</p>
-                                    <p class="presenter">Performers: International student ensembles and professional artists</p>
                                 </div>
                             </span>
                         </td>
@@ -408,6 +594,52 @@
             </div>
         </section>
         
+        <!-- Sponsors Slideshow Section -->
+<section class="sponsors-section">
+    <h2 class="sponsors-title">Our Sponsors</h2>
+    
+    <div class="sponsors-slideshow">
+        <button class="slide-btn prev-btn" id="prevBtn">&lt;</button>
+        
+        <div class="sponsor-cards" id="sponsorCards">
+            <div class="sponsor-card">
+                <img src="/api/placeholder/180/120" alt="Global Arts Foundation" class="sponsor-logo">
+                <h3 class="sponsor-name">Global Arts Foundation</h3>
+                <p class="sponsor-description">Supporting cultural diversity through arts education and exchange programs worldwide.</p>
+            </div>
+            <div class="sponsor-card">
+                <img src="/api/placeholder/180/120" alt="Heritage Bank" class="sponsor-logo">
+                <h3 class="sponsor-name">Heritage Bank</h3>
+                <p class="sponsor-description">Investing in communities and cultural preservation for over 50 years.</p>
+            </div>
+            <div class="sponsor-card">
+                <img src="/api/placeholder/180/120" alt="World Cuisine Co." class="sponsor-logo">
+                <h3 class="sponsor-name">World Cuisine Co.</h3>
+                <p class="sponsor-description">Bringing authentic global flavors to your table while supporting cultural exchange.</p>
+            </div>
+            <div class="sponsor-card">
+                <img src="/api/placeholder/180/120" alt="International Student Association" class="sponsor-logo">
+                <h3 class="sponsor-name">International Student Association</h3>
+                <p class="sponsor-description">Creating bridges between cultures and promoting diversity on campus.</p>
+            </div>
+            <div class="sponsor-card">
+                <img src="/api/placeholder/180/120" alt="Cultural Heritage Trust" class="sponsor-logo">
+                <h3 class="sponsor-name">Cultural Heritage Trust</h3>
+                <p class="sponsor-description">Preserving cultural landmarks and traditions for future generations.</p>
+            </div>
+            <div class="sponsor-card">
+                <img src="/api/placeholder/180/120" alt="Global Travel Agency" class="sponsor-logo">
+                <h3 class="sponsor-name">Global Travel Agency</h3>
+                <p class="sponsor-description">Connecting people through cultural tourism and educational travel experiences.</p>
+            </div>
+        </div>
+        
+        <button class="slide-btn next-btn" id="nextBtn">&gt;</button>
+    </div>
+    
+    <div class="slide-indicators" id="slideIndicators"></div>
+</section>
+        
         <a href="registration.html" class="register-btn">Register Now</a>
     </div>
     
@@ -415,5 +647,190 @@
         <p>&copy; 2025 College Cultural Event. All Rights Reserved.</p>
         <p>For inquiries: culturalevent@college.edu</p>
     </footer>
+    
+    <!-- JavaScript for Countdown Timer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the event date - April 3, 2025
+            const eventDate = new Date('April 3, 2025 09:00:00').getTime();
+            
+            // Update the countdown every second
+            const countdownTimer = setInterval(function() {
+                // Get today's date and time
+                const now = new Date().getTime();
+                
+                // Find the distance between now and the event date
+                const distance = eventDate - now;
+                
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display the result
+                document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+                
+                // If the countdown is finished, show "EVENT STARTED"
+                if (distance < 0) {
+                    clearInterval(countdownTimer);
+                    document.querySelector('.countdown-title').innerHTML = 'EVENT STARTED';
+                    document.getElementById('days').innerHTML = '00';
+                    document.getElementById('hours').innerHTML = '00';
+                    document.getElementById('minutes').innerHTML = '00';
+                    document.getElementById('seconds').innerHTML = '00';
+                }
+            }, 1000);
+        });
+
+            // Sponsors Slideshow
+document.addEventListener('DOMContentLoaded', function() {
+    const sponsorCards = document.getElementById('sponsorCards');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slideIndicators = document.getElementById('slideIndicators');
+    
+    // How many cards to show at once (will be adjusted based on screen size)
+    let cardsToShow = window.innerWidth < 768 ? 1 : 3;
+    
+    // Get all sponsor cards
+    const cards = document.querySelectorAll('.sponsor-card');
+    
+    // Total number of slides (groups of cards)
+    const totalSlides = Math.ceil(cards.length / cardsToShow);
+    
+    // Current slide index
+    let currentSlide = 0;
+    
+    // Create indicators
+    for (let i = 0; i < totalSlides; i++) {
+        const indicator = document.createElement('div');
+        indicator.classList.add('slide-indicator');
+        if (i === 0) indicator.classList.add('active');
+        indicator.dataset.slideIndex = i;
+        slideIndicators.appendChild(indicator);
+        
+        // Add click event to each indicator
+        indicator.addEventListener('click', function() {
+            goToSlide(parseInt(this.dataset.slideIndex));
+            resetAutoSlideTimer();
+        });
+    }
+    
+    // Get all indicators
+    const indicators = document.querySelectorAll('.slide-indicator');
+    
+    // Function to go to a specific slide
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        
+        // Calculate the offset
+        const cardWidth = cards[0].offsetWidth + 20; // card width + margin
+        const offset = -slideIndex * cardsToShow * cardWidth;
+        
+        // Move the cards container
+        sponsorCards.style.transform = `translateX(${offset}px)`;
+        
+        // Update indicators
+        indicators.forEach((ind, index) => {
+            if (index === slideIndex) {
+                ind.classList.add('active');
+            } else {
+                ind.classList.remove('active');
+            }
+        });
+    }
+    
+    // Next slide function
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            goToSlide(currentSlide + 1);
+        } else {
+            goToSlide(0); // Loop back to the beginning
+        }
+    }
+    
+    // Previous slide function
+    function prevSlide() {
+        if (currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+        } else {
+            goToSlide(totalSlides - 1); // Loop to the end
+        }
+    }
+    
+    // Next slide button
+    nextBtn.addEventListener('click', function() {
+        nextSlide();
+        resetAutoSlideTimer();
+    });
+    
+    // Previous slide button
+    prevBtn.addEventListener('click', function() {
+        prevSlide();
+        resetAutoSlideTimer();
+    });
+    
+    // Auto slideshow timer
+    let autoSlideTimer;
+    
+    // Function to start the auto slideshow
+    function startAutoSlide() {
+        autoSlideTimer = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    // Function to reset the auto slideshow timer
+    function resetAutoSlideTimer() {
+        clearInterval(autoSlideTimer);
+        startAutoSlide();
+    }
+    
+    // Start the auto slideshow on page load
+    startAutoSlide();
+    
+    // Pause auto slideshow when hovering over the slideshow
+    sponsorCards.addEventListener('mouseenter', function() {
+        clearInterval(autoSlideTimer);
+    });
+    
+    // Resume auto slideshow when mouse leaves the slideshow
+    sponsorCards.addEventListener('mouseleave', function() {
+        startAutoSlide();
+    });
+    
+    // Adjust slideshow when window is resized
+    window.addEventListener('resize', function() {
+        const newCardsToShow = window.innerWidth < 768 ? 1 : 3;
+        if (newCardsToShow !== cardsToShow) {
+            cardsToShow = newCardsToShow;
+            
+            // Recalculate total slides
+            const newTotalSlides = Math.ceil(cards.length / cardsToShow);
+            
+            // Reset indicators
+            slideIndicators.innerHTML = '';
+            for (let i = 0; i < newTotalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('slide-indicator');
+                if (i === 0) indicator.classList.add('active');
+                indicator.dataset.slideIndex = i;
+                slideIndicators.appendChild(indicator);
+                
+                // Add click event to each indicator
+                indicator.addEventListener('click', function() {
+                    goToSlide(parseInt(this.dataset.slideIndex));
+                    resetAutoSlideTimer();
+                });
+            }
+            
+            // Update current slide (reset to first slide to avoid issues)
+            goToSlide(0);
+        }
+    });
+});
+    </script>
 </body>
 </html>
