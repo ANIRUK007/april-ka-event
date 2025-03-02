@@ -3,834 +3,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Cultural Event 2025</title>
+    <title>College Event</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .event-section {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 2.5rem;
-            width: 100%;
-            transition: transform 0.3s ease;
-        }
-        
-        .event-section:hover {
-            transform: translateY(-5px);
-        }
-        
-        .event-day {
-            padding: 2.5rem;
-        }
-        
-        .event-day h2 {
-            color: #333;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid #6e8efb;
-            font-size: 1.8rem;
-        }
-        
-        .event-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .event-table td, .event-table th {
-            padding: 15px 18px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .event-table tr:hover {
             background-color: #f9f9f9;
+            color: #333;
         }
         
-        .event-table tr:last-child td {
-            border-bottom: none;
+        /* Header and Navigation */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
         
-        .event-time {
-            width: 30%;
+        .logo h2 {
+            color: white;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #555;
+            margin: 0;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav ul li {
+            margin-left: 2rem;
+        }
+        
+        .main-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .main-nav ul li a:hover {
+            background-color: #ff4d4d;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero-container {
+            position: relative;
+            height: 55vh;
+            overflow: hidden;
+            background-color: #000;
+            margin-top: 70px; /* Added to accommodate fixed header */
+        }
+        
+        .slideshow {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        /* New slide implementation */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5); /* Darkens the image for better text readability */
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .register-btn {
-            display: block;
-            width: 280px;
-            margin: 3rem auto;
-            padding: 1.2rem 2rem;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff4d4d;
             color: white;
-            text-align: center;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 30px;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
+            border: 2px solid #ff4d4d;
         }
         
         .register-btn:hover {
-            background: linear-gradient(135deg, #5c7adc, #9669d3);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
-        }
-        
-        footer {
-            background: #333;
+            background-color: transparent;
             color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 5px solid #6e8efb;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
-        .event-name {
-            position: relative;
-            cursor: pointer;
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             color: #333;
-            text-decoration: underline dotted;
-            font-weight: 600;
-            padding: 5px 0;
-            display: inline-block;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .circle-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #ff4d4d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Sponsors Section */
+        .sponsors-section {
+            padding: 5rem 2rem;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        
+        .sponsors-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .sponsors-slider {
+            max-width: 1200px;
+            margin: 0 5rem 1.5rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sponsors-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            padding: 2rem 0;
+        }
+        
+        .sponsor-card {
+            min-width: 250px;
+            margin: 0 1rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transition: all 0.3s ease;
         }
         
-        .event-name:hover {
-            color: #6e8efb;
+        .sponsor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .event-dropdown {
-            position: absolute;
-            display: none;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-            padding: 20px;
-            width: 320px;
-            z-index: 100;
-            left: 100%;
-            top: 0;
-            margin-left: 20px;
-            color: #333;
-            font-size: 0.95rem;
-            text-align: left;
-            line-height: 1.5;
-        }
-        
-        .event-dropdown h4 {
-            margin-bottom: 12px;
-            color: #6e8efb;
-            font-size: 1.1rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-        }
-        
-        .event-dropdown p {
-            margin-bottom: 12px;
-        }
-        
-        .event-dropdown .location, 
-        .event-dropdown .presenter {
-            font-style: italic;
-            color: #555;
-            padding-left: 5px;
-            border-left: 3px solid #6e8efb;
-        }
-        
-        .event-name:hover .event-dropdown {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        /* Countdown Timer Styles */
-        .countdown-container {
-            background: rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem auto;
-            max-width: 600px;
-            text-align: center;
-        }
-        
-        .countdown-title {
-            font-size: 1.3rem;
+        .sponsor-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
             margin-bottom: 1rem;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         
-        .countdown-timer {
+        .sponsor-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .sponsor-card p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-btn:hover {
+            background-color: #e62e2e;
+        }
+        
+        .prev-btn {
+            left: 5px;
+        }
+        
+        .next-btn {
+            right: 75px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-icons {
             display: flex;
             justify-content: center;
             gap: 1rem;
+            margin-top: 1rem;
         }
         
-        .countdown-box {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 1rem 0.5rem;
-            min-width: 80px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
         
-        .countdown-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #6e8efb;
+        .social-icon:hover {
+            background-color: #ff4d4d;
+            transform: translateY(-3px);
         }
         
-        .countdown-label {
-            font-size: 0.8rem;
-            color: #333;
-            text-transform: uppercase;
+        /* Slideshow indicators */
+        .slide-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 15;
         }
         
-        /* Sponsors Slideshow Styles */
-        /* Sponsors Slideshow Styles */
-.sponsors-section {
-    background: transparent;
-    border-radius: 8px;
-    padding: 2.5rem;
-    margin-bottom: 2.5rem;
-    position: relative;
-    box-shadow: none;
-}
-
-.sponsors-title {
-    color: #333;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 2px solid #6e8efb;
-    font-size: 1.8rem;
-}
-
-.sponsors-slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-    min-height: 300px;
-    display: flex;
-    align-items: center;
-}
-
-.sponsor-cards {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: max-content;
-    margin: 0 40px;
-}
-
-.sponsor-card {
-    background: #f9f9f9;
-    margin: 0 10px;
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-.sponsor-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.sponsor-logo {
-    width: 100%;
-    height: 120px;
-    object-fit: contain;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-}
-
-.sponsor-name {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.sponsor-description {
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.slide-btn {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-.prev-btn {
-    left: 0;
-}
-
-.next-btn {
-    right: 0;
-}
-
-.slide-btn:hover {
-    background: linear-gradient(135deg, #5c7adc, #9669d3);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
-}
-
-.slide-indicators {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    gap: 0.5rem;
-}
-
-.slide-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.slide-indicator.active {
-    background: #6e8efb;
-}
-
-@media (max-width: 768px) {
-    .sponsor-card {
-        width: 220px;
-    }
-    
-    .sponsors-slideshow {
-        padding: 0 30px;
-    }
-}
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
         
+        .indicator.active {
+            background-color: #fff;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .event-time {
-                width: 40%;
-            }
-            
-            .event-dropdown {
-                width: 280px;
-                left: -50px;
-                top: 100%;
-                margin-left: 0;
-            }
-            
-            .event-day {
-                padding: 1.5rem;
-            }
-            
-            header h1 {
+            .hero-content h1 {
                 font-size: 2rem;
             }
             
-            .countdown-timer {
-                flex-wrap: wrap;
+            .hero-content p {
+                font-size: 1rem;
             }
             
-            .countdown-box {
-                min-width: 70px;
+            .about-section {
+                flex-direction: column;
             }
             
-            .sponsor-card {
-                width: 220px;
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .circle-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 1rem 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: all 0.4s ease;
+            }
+            
+            .main-nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>College Cultural Event 2025</h1>
-        <p>Join us for an amazing two-day celebration of cultural diversity!</p>
-        
-        <!-- Countdown Timer -->
-        <div class="countdown-container">
-            <h3 class="countdown-title">Event Starts In:</h3>
-            <div class="countdown-timer">
-                <div class="countdown-box">
-                    <div class="countdown-value" id="days">00</div>
-                    <div class="countdown-label">Days</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-value" id="hours">00</div>
-                    <div class="countdown-label">Hours</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-value" id="minutes">00</div>
-                    <div class="countdown-label">Minutes</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-value" id="seconds">00</div>
-                    <div class="countdown-label">Seconds</div>
-                </div>
-            </div>
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <div class="logo">
+            <h2>EVENT 2025</h2>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
     
-    <div class="container">
-        <section class="event-section">
-            <div class="event-day">
-                <h2>Day 1 - April 3, 2025</h2>
-                
-                <table class="event-table">
-                    <tr>
-                        <td class="event-time">9:00 AM - 10:00 AM</td>
-                        <td>
-                            <span class="event-name">Opening Ceremony
-                                <div class="event-dropdown">
-                                    <h4>Opening Ceremony</h4>
-                                    <p class="location">Location: Main Auditorium</p>
-                                    <p>Traditional lamp lighting ceremony followed by cultural parade representing various countries and regions.</p>
-                                    <p class="presenter">Chief Guest: Ms. Aisha Rodriguez, UNESCO Cultural Ambassador</p>
-                                    <p>Opening performances include a classical dance ensemble and a multicultural choir.</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">10:30 AM - 12:00 PM</td>
-                        <td>
-                            <span class="event-name">Keynote Address: Cultural Heritage in Modern Times
-                                <div class="event-dropdown">
-                                    <h4>Keynote Address: Cultural Heritage in Modern Times</h4>
-                                    <p class="location">Location: Main Auditorium</p>
-                                    <p>An inspiring talk on preserving cultural heritage while embracing modern influences. Discussion on importance of cultural exchange in a globalized world.</p>
-                                    <p class="presenter">Speaker: Prof. Maya Patel, Cultural Anthropologist</p>
-                                    <p>Interactive Q&A session follows the keynote address.</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">12:00 PM - 1:30 PM</td>
-                        <td>
-                            <span class="event-name">Global Food Festival
-                                <div class="event-dropdown">
-                                    <h4>Global Food Festival</h4>
-                                    <p class="location">Location: Campus Quadrangle</p>
-                                    <p>Sample authentic cuisines from over 15 countries prepared by student clubs and local restaurants.</p>
-                                    <p>Featured regions: Latin America, East Asia, South Asia, Africa, Mediterranean, and Middle East.</p>
-                                    <p>Food tokens available for purchase. Vegetarian, vegan, and halal options available.</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">1:30 PM - 3:30 PM</td>
-                        <td>
-                            <span class="event-name">Workshop: Traditional Arts & Crafts
-                                <div class="event-dropdown">
-                                    <h4>Workshop: Traditional Arts & Crafts</h4>
-                                    <p class="location">Location: Arts Building, Rooms 101-105</p>
-                                    <p>Interactive sessions in multiple rooms:</p>
-                                    <p>- Room 101: Chinese Calligraphy & Brush Painting</p>
-                                    <p>- Room 102: Indian Rangoli & Henna Art</p>
-                                    <p>- Room 103: African Basket Weaving</p>
-                                    <p>- Room 104: Latin American Textile Art</p>
-                                    <p>- Room 105: Middle Eastern Mosaic Design</p>
-                                    <p>Materials provided. Take your creations home!</p>
-                                    <p>Limited to 30 participants per room. Sign-up at the venue.</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">4:00 PM - 5:30 PM</td>
-                        <td>
-                            <span class="event-name">Panel Discussion: Preserving Cultural Identity
-                                <div class="event-dropdown">
-                                    <h4>Panel Discussion: Preserving Cultural Identity</h4>
-                                    <p class="location">Location: Main Auditorium</p>
-                                    <p>Distinguished speakers discuss the challenges and importance of preserving cultural identities in the digital age. Topics include language preservation, indigenous rights, and cultural appropriation vs. appreciation.</p>
-                                    <p class="presenter">Moderator: Dr. James Chen</p>
-                                    <p class="presenter">Panelists: Representatives from cultural heritage organizations, indigenous communities, and academic institutions</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                </table>
+    <!-- Hero Section with Slideshow -->
+    <section class="hero-container">
+        <div class="slideshow">
+            <!-- Changed slide structure to include img elements properly -->
+            <div class="slide active">
+                <img src="qawalli1.webp" alt="Event Image 1">
             </div>
-        </section>
-        
-        <section class="event-section">
-            <div class="event-day">
-                <h2>Day 2 - April 4, 2025</h2>
-                
-                <table class="event-table">
-                    <tr>
-                        <td class="event-time">9:30 AM - 11:00 AM</td>
-                        <td>
-                            <span class="event-name">Cultural Performances Competition
-                                <div class="event-dropdown">
-                                    <h4>Cultural Performances Competition</h4>
-                                    <p class="location">Location: Main Auditorium</p>
-                                    <p>Students showcase talents in traditional and fusion performances:</p>
-                                    <p>- Traditional dances from various countries</p>
-                                    <p>- Folk music performances</p>
-                                    <p>- Cultural fusion acts</p>
-                                    <p>- Spoken word poetry in multiple languages</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">11:30 AM - 1:00 PM</td>
-                        <td>
-                            <span class="event-name">Indigenous Heritage Showcase
-                                <div class="event-dropdown">
-                                    <h4>Indigenous Heritage Showcase</h4>
-                                    <p class="location">Location: Exhibition Hall</p>
-                                    <p>Special presentation of indigenous cultures, traditions, and stories by representatives from local native communities.</p>
-                                    <p>Features storytelling sessions, traditional music, artifact displays, and discussion on contemporary indigenous issues.</p>
-                                    
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">1:00 PM - 2:00 PM</td>
-                        <td>
-                            <span class="event-name">International Cuisine Lunch
-                                <div class="event-dropdown">
-                                    <h4>International Cuisine Lunch</h4>
-                                    <p class="location">Location: Campus Quadrangle</p>
-                                    <p>Continuation of the global food festival featuring new dishes and demonstrations.</p>
-                                    <p>Special cooking demonstrations by local chefs.</p>
-                                    <p>Recipe booklets available for popular dishes.</p>
-                                    <p>Food tokens available for purchase.</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">2:00 PM - 4:00 PM</td>
-                        <td>
-                            <span class="event-name">Cultural Exhibition & Marketplace
-                                <div class="event-dropdown">
-                                    <h4>Cultural Exhibition & Marketplace</h4>
-                                    <p class="location">Location: Exhibition Hall</p>
-                                    <p>Browse displays of traditional artifacts, artwork, textiles, and handicrafts from around the world.</p>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="event-time">4:30 PM - 5:30 PM</td>
-                        <td>
-                            <span class="event-name">Closing Ceremony & Cultural Fusion Performance
-                                <div class="event-dropdown">
-                                    <h4>Closing Ceremony & Cultural Fusion Performance</h4>
-                                </div>
-                            </span>
-                        </td>
-                    </tr>
-                </table>
+            <div class="slide">
+                <img src="instru1.jpg" alt="Event Image 2">
             </div>
-        </section>
-        
-        <!-- Sponsors Slideshow Section -->
-<section class="sponsors-section">
-    <h2 class="sponsors-title">Our Sponsors</h2>
-    
-    <div class="sponsors-slideshow">
-        <button class="slide-btn prev-btn" id="prevBtn">&lt;</button>
-        
-        <div class="sponsor-cards" id="sponsorCards">
-            <div class="sponsor-card">
-                <img src="/api/placeholder/180/120" alt="Global Arts Foundation" class="sponsor-logo">
-                <h3 class="sponsor-name">Global Arts Foundation</h3>
-                <p class="sponsor-description">Supporting cultural diversity through arts education and exchange programs worldwide.</p>
-            </div>
-            <div class="sponsor-card">
-                <img src="/api/placeholder/180/120" alt="Heritage Bank" class="sponsor-logo">
-                <h3 class="sponsor-name">Heritage Bank</h3>
-                <p class="sponsor-description">Investing in communities and cultural preservation for over 50 years.</p>
-            </div>
-            <div class="sponsor-card">
-                <img src="/api/placeholder/180/120" alt="World Cuisine Co." class="sponsor-logo">
-                <h3 class="sponsor-name">World Cuisine Co.</h3>
-                <p class="sponsor-description">Bringing authentic global flavors to your table while supporting cultural exchange.</p>
-            </div>
-            <div class="sponsor-card">
-                <img src="/api/placeholder/180/120" alt="International Student Association" class="sponsor-logo">
-                <h3 class="sponsor-name">International Student Association</h3>
-                <p class="sponsor-description">Creating bridges between cultures and promoting diversity on campus.</p>
-            </div>
-            <div class="sponsor-card">
-                <img src="/api/placeholder/180/120" alt="Cultural Heritage Trust" class="sponsor-logo">
-                <h3 class="sponsor-name">Cultural Heritage Trust</h3>
-                <p class="sponsor-description">Preserving cultural landmarks and traditions for future generations.</p>
-            </div>
-            <div class="sponsor-card">
-                <img src="/api/placeholder/180/120" alt="Global Travel Agency" class="sponsor-logo">
-                <h3 class="sponsor-name">Global Travel Agency</h3>
-                <p class="sponsor-description">Connecting people through cultural tourism and educational travel experiences.</p>
+            <div class="slide">
+                <img src="music1.jpg" alt="Event Image 3">
             </div>
         </div>
         
-        <button class="slide-btn next-btn" id="nextBtn">&gt;</button>
-    </div>
-    
-    <div class="slide-indicators" id="slideIndicators"></div>
-</section>
+        <!-- Added slide indicators -->
+        <div class="slide-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+        </div>
         
-        <a href="registration.html" class="register-btn">Register Now</a>
-    </div>
+        <div class="hero-content">
+            <h1>EVENT NAME 2025</h1>
+            <p>Join us for an unforgettable experience at our college's biggest event of the year!</p>
+            <a href="register.html" class="register-btn">REGISTER NOW</a>
+        </div>
+    </section>
     
+    <!-- About Event Section -->
+    <section class="about-section">
+        <div class="about-text">
+            <h2>About The Event</h2>
+            <p>Welcome to our annual college event that brings together students, faculty, and industry professionals for an incredible experience of learning, networking, and fun.</p>
+            <p>This year's event features workshops, competitions, guest speakers, and entertainment that will inspire and engage participants from all backgrounds. Whether you're interested in technology, arts, business, or sports, there's something for everyone.</p>
+            <p>Mark your calendars for March 15-17, 2025, and be part of this transformative experience that has been shaping futures for over a decade.</p>
+        </div>
+        <div class="about-image">
+            <img src="event1.jpg" alt="Event Image" class="circle-image">
+        </div>
+    </section>
+    
+    <!-- Sponsors Section -->
+    <section class="sponsors-section">
+        <h2>Our Sponsors</h2>
+        <div class="sponsors-slider">
+            <button class="slider-btn prev-btn">&#8249;</button>
+            <div class="sponsors-container">
+                <div class="sponsor-card">
+                    <img src="/api/placeholder/150/150" alt="Sponsor 1" class="sponsor-logo">
+                    <h3>Sponsor Name</h3>
+                    <p>Platinum Sponsor</p>
+                </div>
+                <div class="sponsor-card">
+                    <img src="/api/placeholder/150/150" alt="Sponsor 2" class="sponsor-logo">
+                    <h3>Sponsor Name</h3>
+                    <p>Gold Sponsor</p>
+                </div>
+                <div class="sponsor-card">
+                    <img src="/api/placeholder/150/150" alt="Sponsor 3" class="sponsor-logo">
+                    <h3>Sponsor Name</h3>
+                    <p>Silver Sponsor</p>
+                </div>
+                <div class="sponsor-card">
+                    <img src="/api/placeholder/150/150" alt="Sponsor 4" class="sponsor-logo">
+                    <h3>Sponsor Name</h3>
+                    <p>Bronze Sponsor</p>
+                </div>
+            </div>
+            <button class="slider-btn next-btn">&#8250;</button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 College Cultural Event. All Rights Reserved.</p>
-        <p>For inquiries: culturalevent@college.edu</p>
+        <p>&copy; 2025 College Event. All Rights Reserved.</p>
+        <p>Contact: event@college.edu | Phone: (123) 456-7890</p>
+        <div class="social-icons">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">tw</a>
+        </div>
     </footer>
-    
-    <!-- JavaScript for Countdown Timer -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set the event date - April 3, 2025
-            const eventDate = new Date('April 3, 2025 09:00:00').getTime();
-            
-            // Update the countdown every second
-            const countdownTimer = setInterval(function() {
-                // Get today's date and time
-                const now = new Date().getTime();
-                
-                // Find the distance between now and the event date
-                const distance = eventDate - now;
-                
-                // Time calculations for days, hours, minutes and seconds
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                // Display the result
-                document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-                document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
-                
-                // If the countdown is finished, show "EVENT STARTED"
-                if (distance < 0) {
-                    clearInterval(countdownTimer);
-                    document.querySelector('.countdown-title').innerHTML = 'EVENT STARTED';
-                    document.getElementById('days').innerHTML = '00';
-                    document.getElementById('hours').innerHTML = '00';
-                    document.getElementById('minutes').innerHTML = '00';
-                    document.getElementById('seconds').innerHTML = '00';
-                }
-            }, 1000);
-        });
 
-            // Sponsors Slideshow
-document.addEventListener('DOMContentLoaded', function() {
-    const sponsorCards = document.getElementById('sponsorCards');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const slideIndicators = document.getElementById('slideIndicators');
-    
-    // How many cards to show at once (will be adjusted based on screen size)
-    let cardsToShow = window.innerWidth < 768 ? 1 : 3;
-    
-    // Get all sponsor cards
-    const cards = document.querySelectorAll('.sponsor-card');
-    
-    // Total number of slides (groups of cards)
-    const totalSlides = Math.ceil(cards.length / cardsToShow);
-    
-    // Current slide index
-    let currentSlide = 0;
-    
-    // Create indicators
-    for (let i = 0; i < totalSlides; i++) {
-        const indicator = document.createElement('div');
-        indicator.classList.add('slide-indicator');
-        if (i === 0) indicator.classList.add('active');
-        indicator.dataset.slideIndex = i;
-        slideIndicators.appendChild(indicator);
-        
-        // Add click event to each indicator
-        indicator.addEventListener('click', function() {
-            goToSlide(parseInt(this.dataset.slideIndex));
-            resetAutoSlideTimer();
-        });
-    }
-    
-    // Get all indicators
-    const indicators = document.querySelectorAll('.slide-indicator');
-    
-    // Function to go to a specific slide
-    function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        
-        // Calculate the offset
-        const cardWidth = cards[0].offsetWidth + 20; // card width + margin
-        const offset = -slideIndex * cardsToShow * cardWidth;
-        
-        // Move the cards container
-        sponsorCards.style.transform = `translateX(${offset}px)`;
-        
-        // Update indicators
-        indicators.forEach((ind, index) => {
-            if (index === slideIndex) {
-                ind.classList.add('active');
-            } else {
-                ind.classList.remove('active');
+    <script>
+        // Completely revised slideshow functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hero Slideshow
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            
+            // Initialize the slideshow
+            function startSlideshow() {
+                setInterval(nextSlide, 5000);
             }
-        });
-    }
-    
-    // Next slide function
-    function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-            goToSlide(currentSlide + 1);
-        } else {
-            goToSlide(0); // Loop back to the beginning
-        }
-    }
-    
-    // Previous slide function
-    function prevSlide() {
-        if (currentSlide > 0) {
-            goToSlide(currentSlide - 1);
-        } else {
-            goToSlide(totalSlides - 1); // Loop to the end
-        }
-    }
-    
-    // Next slide button
-    nextBtn.addEventListener('click', function() {
-        nextSlide();
-        resetAutoSlideTimer();
-    });
-    
-    // Previous slide button
-    prevBtn.addEventListener('click', function() {
-        prevSlide();
-        resetAutoSlideTimer();
-    });
-    
-    // Auto slideshow timer
-    let autoSlideTimer;
-    
-    // Function to start the auto slideshow
-    function startAutoSlide() {
-        autoSlideTimer = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-    }
-    
-    // Function to reset the auto slideshow timer
-    function resetAutoSlideTimer() {
-        clearInterval(autoSlideTimer);
-        startAutoSlide();
-    }
-    
-    // Start the auto slideshow on page load
-    startAutoSlide();
-    
-    // Pause auto slideshow when hovering over the slideshow
-    sponsorCards.addEventListener('mouseenter', function() {
-        clearInterval(autoSlideTimer);
-    });
-    
-    // Resume auto slideshow when mouse leaves the slideshow
-    sponsorCards.addEventListener('mouseleave', function() {
-        startAutoSlide();
-    });
-    
-    // Adjust slideshow when window is resized
-    window.addEventListener('resize', function() {
-        const newCardsToShow = window.innerWidth < 768 ? 1 : 3;
-        if (newCardsToShow !== cardsToShow) {
-            cardsToShow = newCardsToShow;
             
-            // Recalculate total slides
-            const newTotalSlides = Math.ceil(cards.length / cardsToShow);
-            
-            // Reset indicators
-            slideIndicators.innerHTML = '';
-            for (let i = 0; i < newTotalSlides; i++) {
-                const indicator = document.createElement('div');
-                indicator.classList.add('slide-indicator');
-                if (i === 0) indicator.classList.add('active');
-                indicator.dataset.slideIndex = i;
-                slideIndicators.appendChild(indicator);
+            // Change to the specified slide
+            function goToSlide(n) {
+                // Remove active class from all slides and indicators
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
                 
-                // Add click event to each indicator
-                indicator.addEventListener('click', function() {
-                    goToSlide(parseInt(this.dataset.slideIndex));
-                    resetAutoSlideTimer();
-                });
+                // Set the current slide
+                currentSlide = (n + slides.length) % slides.length;
+                
+                // Activate the current slide and indicator
+                slides[currentSlide].classList.add('active');
+                indicators[currentSlide].classList.add('active');
             }
             
-            // Update current slide (reset to first slide to avoid issues)
-            goToSlide(0);
-        }
-    });
-});
+            // Go to the next slide
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // Add click events to indicators
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    goToSlide(parseInt(this.getAttribute('data-index')));
+                });
+            });
+            
+            // Start the slideshow
+            startSlideshow();
+            
+            // Sponsors Slider
+            const sponsorsContainer = document.querySelector('.sponsors-container');
+            const sponsorCards = document.querySelectorAll('.sponsor-card');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let sponsorIndex = 0;
+            const cardWidth = 282; // card width + margin
+            
+            function moveSponsors() {
+                sponsorsContainer.style.transform = `translateX(${-sponsorIndex * cardWidth}px)`;
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                sponsorIndex = Math.max(sponsorIndex - 1, 0);
+                moveSponsors();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const maxIndex = sponsorCards.length - Math.floor(sponsorsContainer.clientWidth / cardWidth);
+                sponsorIndex = Math.min(sponsorIndex + 1, Math.max(0, maxIndex));
+                moveSponsors();
+            });
+            
+            // Adjust on window resize
+            window.addEventListener('resize', moveSponsors);
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mainNav = document.querySelector('.main-nav');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+            });
+            
+            // Change header background on scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.main-header');
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                } else {
+                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                }
+            });
+        });
     </script>
 </body>
 </html>

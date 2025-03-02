@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - College Event</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header and Navigation */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo h2 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav ul li {
+            margin-left: 2rem;
+        }
+        
+        .main-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .main-nav ul li a:hover {
+            background-color: #ff4d4d;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+        
+        header.contact-header {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 8rem 0 4rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .event-stats {
+            background-color: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .stat-box {
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4d4d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        /* Schedule Islands Styling */
+        .schedule-island {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-island:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .schedule-island::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #ff4d4d, #ff9e9e);
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .day-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff4d4d, #ff9e9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 1rem;
+        }
+        
+        .day-date {
+            font-size: 1.2rem;
+            color: #666;
+            padding: 0.3rem 1rem;
+            background-color: #f0f0f0;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        
+        .schedule-table tr {
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .schedule-table tr:hover {
+            background-color: #fafafa;
+        }
+        
+        .schedule-table td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+        
+        .event-time {
+            font-weight: bold;
+            color: #333;
+            width: 20%;
+            font-size: 1.1rem;
+        }
+        
+        .event-name {
+            font-size: 1.2rem;
+            color: #333;
+            width: 50%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        /* Hover Description Styles */
+        .event-name-text {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        
+        .event-name-text:hover {
+            color: #ff4d4d;
+        }
+        
+        .event-name-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #ff4d4d;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-name-text:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .event-description {
+            position: absolute;
+            top: 0;
+            left: 105%;
+            width: 250px;
+            background: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        .event-name-text:hover .event-description {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Handle description boxes that would go off-screen to the right */
+        .event-name-text.right-overflow .event-description {
+            left: auto;
+            right: 105%;
+        }
+        
+        .event-description h4 {
+            color: #ff4d4d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-description p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .description-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #eee;
+        }
+        
+        .event-location {
+            color: #666;
+            font-size: 1rem;
+            width: 30%;
+        }
+        
+        .location-dot {
+            color: #ff4d4d;
+            margin-right: 0.5rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #ff4d4d;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .schedule-table td {
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .event-time, .event-name, .event-location {
+                font-size: 0.9rem;
+            }
+            
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 1rem 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: all 0.4s ease;
+            }
+            
+            .main-nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            /* Mobile specific tooltip adjustments */
+            .event-description {
+                width: 180px;
+                font-size: 0.8rem;
+            }
+            
+            /* Adjust position for mobile screens */
+            .event-name-text .event-description {
+                top: 100%;
+                left: 0;
+            }
+            
+            .event-name-text.right-overflow .event-description {
+                left: 0;
+                right: auto;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <div class="logo">
+            <h2>EVENT 2025</h2>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    
+    <header class="contact-header">
+        <div class="container">
+            <h1>Event Schedule</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="event-stats">
+            <h2>Event Highlights</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Events</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">40</div>
+                    <div class="stat-label">Stalls</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Attendees</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Day 1 Schedule Island -->
+        <section class="schedule-island">
+            <div class="day-header">
+                <h2 class="day-title">Day 1</h2>
+                <span class="day-date">April 3, 2025</span>
+            </div>
+            
+            <table class="schedule-table">
+                <tr>
+                    <td class="event-time">9:00 AM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Opening Ceremony
+                            <div class="event-description">
+                                <h4>Opening Ceremony</h4>
+                                <p>The grand kickoff to our annual event, featuring addresses from college leadership, keynote speakers, and a special performance by the college's cultural team.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 90 minutes</span>
+                                    <span><i class="fas fa-user"></i> Dean Williams</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Main Auditorium</td>
+                </tr>
+                <tr>
+                    <td class="event-time">10:30 AM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Ramp Walk
+                            <div class="event-description">
+                                <h4>Ramp Walk</h4>
+                                <p>A showcase of student fashion designs featuring themes from sustainable fashion to futuristic clothing. Judged by industry professionals.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 75 minutes</span>
+                                    <span><i class="fas fa-user"></i> Ms. Rodriguez</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Hall A</td>
+                </tr>
+                <tr>
+                    <td class="event-time">12:00 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Instrumental Music
+                            <div class="event-description">
+                                <h4>Instrumental Music</h4>
+                                <p>Talented musicians from across colleges perform classical, contemporary, and fusion pieces. Perfect lunch-time ambiance in our beautiful garden setting.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 60 minutes</span>
+                                    <span><i class="fas fa-user"></i> Music Society</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Garden Area</td>
+                </tr>
+                <tr>
+                    <td class="event-time">1:30 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Hackathon Kickoff
+                            <div class="event-description">
+                                <h4>Hackathon Kickoff</h4>
+                                <p>24-hour coding challenge begins! Teams will develop innovative solutions to real-world problems. Mentors available throughout the session.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 24 hours</span>
+                                    <span><i class="fas fa-user"></i> Prof. Jenkins</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Computer Lab</td>
+                </tr>
+                <tr>
+                    <td class="event-time">3:00 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Guest Speaker: Future of AI
+                            <div class="event-description">
+                                <h4>Guest Speaker: Future of AI</h4>
+                                <p>Distinguished industry expert discusses emerging AI trends, ethical considerations, and career opportunities in artificial intelligence.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 90 minutes</span>
+                                    <span><i class="fas fa-user"></i> Dr. Anita Sharma</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Main Auditorium</td>
+                </tr>
+                <tr>
+                    <td class="event-time">5:00 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Cultural Performances
+                            <div class="event-description">
+                                <h4>Cultural Performances</h4>
+                                <p>A vibrant showcase of traditional and contemporary dances, skits, and musical performances representing diverse cultures from around the world.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 120 minutes</span>
+                                    <span><i class="fas fa-user"></i> Cultural Committee</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Open Air Theater</td>
+                </tr>
+                <tr>
+                    <td class="event-time">7:30 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Day 1 Closing & Music Night
+                            <div class="event-description">
+                                <h4>Day 1 Closing & Music Night</h4>
+                                <p>Celebrate the first day's success with live bands, DJ sets, and food stalls. Network with fellow attendees in a relaxed atmosphere.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> Until 11 PM</span>
+                                    <span><i class="fas fa-user"></i> Events Team</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>College Grounds</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- Day 2 Schedule Island -->
+        <section class="schedule-island">
+            <div class="day-header">
+                <h2 class="day-title">Day 2</h2>
+                <span class="day-date">March 16, 2025</span>
+            </div>
+            
+            <table class="schedule-table">
+                <tr>
+                    <td class="event-time">9:30 AM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Design Thinking Workshop
+                            <div class="event-description">
+                                <h4>Design Thinking Workshop</h4>
+                                <p>Interactive session teaching human-centered design approaches to problem-solving. Participants will work on real case studies in small groups.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 90 minutes</span>
+                                    <span><i class="fas fa-user"></i> Mr. David Chen</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Hall B</td>
+                </tr>
+                <tr>
+                    <td class="event-time">11:00 AM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Panel Discussion: Industry Trends
+                            <div class="event-description">
+                                <h4>Panel Discussion: Industry Trends</h4>
+                                <p>Leading professionals discuss emerging industry trends, skills in demand, and the future of work. Q&A session included.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 75 minutes</span>
+                                    <span><i class="fas fa-user"></i> Career Services</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Conference Room</td>
+                </tr>
+                <tr>
+                    <td class="event-time">12:30 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Lunch & Exhibition Tour
+                            <div class="event-description">
+                                <h4>Lunch & Exhibition Tour</h4>
+                                <p>Explore innovative projects, research findings, and industry booths while enjoying a catered lunch. Network with exhibitors and fellow attendees.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 90 minutes</span>
+                                    <span><i class="fas fa-user"></i> Exhibitors</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Exhibition Hall</td>
+                </tr>
+                <tr>
+                    <td class="event-time">2:00 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Hackathon Presentations
+                            <div class="event-description">
+                                <h4>Hackathon Presentations</h4>
+                                <p>Teams present their solutions developed during the 24-hour hackathon. Judges from industry and academia evaluate projects based on innovation, feasibility, and impact.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 120 minutes</span>
+                                    <span><i class="fas fa-user"></i> Tech Committee</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Main Auditorium</td>
+                </tr>
+                <tr>
+                    <td class="event-time">4:00 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Start-up Pitching Contest
+                            <div class="event-description">
+                                <h4>Start-up Pitching Contest</h4>
+                                <p>Student entrepreneurs pitch their business ideas to a panel of investors and successful founders. Cash prizes and mentorship opportunities available.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 90 minutes</span>
+                                    <span><i class="fas fa-user"></i> Entrepreneurship Cell</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Hall C</td>
+                </tr>
+                <tr>
+                    <td class="event-time">5:30 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Award Ceremony
+                            <div class="event-description">
+                                <h4>Award Ceremony</h4>
+                                <p>Celebrating excellence across all event categories. Winners of hackathon, cultural competitions, academic contests, and special recognition awards will be announced.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> 60 minutes</span>
+                                    <span><i class="fas fa-user"></i> College Dean</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>Main Auditorium</td>
+                </tr>
+                <tr>
+                    <td class="event-time">7:00 PM</td>
+                    <td class="event-name">
+                        <span class="event-name-text">Closing Party & Networking
+                            <div class="event-description">
+                                <h4>Closing Party & Networking</h4>
+                                <p>Final celebration with music, refreshments, and a chance to connect with peers, alumni, and industry professionals in a relaxed setting.</p>
+                                <div class="description-details">
+                                    <span><i class="fas fa-clock"></i> Until 10 PM</span>
+                                    <span><i class="fas fa-user"></i> Student Council</span>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                    <td class="event-location"><i class="fas fa-map-marker-alt location-dot"></i>College Grounds</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 College Event. All Rights Reserved.</p>
+        <p>Contact: event@college.edu | Phone: (123) 456-7890</p>
+        <div class="social-icons">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">tw</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mainNav = document.querySelector('.main-nav');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+            });
+            
+            // Change header background on scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.main-header');
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                } else {
+                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                }
+            });
+            
+            // Handle description boxes that might go off-screen
+            const handleDescriptionPositioning = () => {
+                const eventNames = document.querySelectorAll('.event-name-text');
+                const windowWidth = window.innerWidth;
+                
+                eventNames.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    const rightEdge = rect.right + 250; // Description width
+                    
+                    if (rightEdge > windowWidth) {
+                        item.classList.add('right-overflow');
+                    } else {
+                        item.classList.remove('right-overflow');
+                    }
+                });
+            };
+            
+            // Initial call
+            handleDescriptionPositioning();
+            
+            // Recalculate on window resize
+            window.addEventListener('resize', handleDescriptionPositioning);
+        });
+    </script>
+</body>
+</html>
