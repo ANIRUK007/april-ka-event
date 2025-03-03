@@ -13,8 +13,8 @@
         }
         
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #EAE2B7;
+            color: #003049;
         }
         
         /* Header and Navigation */
@@ -27,13 +27,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #003049;
             z-index: 1000;
             transition: all 0.3s ease;
         }
         
         .logo h2 {
-            color: white;
+            color: #EAE2B7;
             font-size: 1.5rem;
             font-weight: bold;
             margin: 0;
@@ -49,7 +49,7 @@
         }
         
         .main-nav ul li a {
-            color: white;
+            color: #EAE2B7;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 500;
@@ -59,7 +59,7 @@
         }
         
         .main-nav ul li a:hover {
-            background-color: #ff4d4d;
+            background-color: #f77f00;
         }
         
         .mobile-menu-btn {
@@ -71,7 +71,7 @@
         .mobile-menu-btn span {
             width: 30px;
             height: 3px;
-            background-color: white;
+            background-color: #EAE2B7;
             margin: 3px 0;
             transition: all 0.3s ease;
         }
@@ -81,7 +81,7 @@
             position: relative;
             height: 55vh;
             overflow: hidden;
-            background-color: #000;
+            background-color: #003049;
             margin-top: 60px; /* Added to accommodate fixed header */
         }
         
@@ -121,7 +121,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: white;
+            color: #EAE2B7;
             z-index: 10;
             width: 90%;
             max-width: 800px;
@@ -142,19 +142,19 @@
         .register-btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #ff4d4d;
-            color: white;
+            background-color: #f77f00;
+            color: #EAE2B7;
             text-decoration: none;
             font-weight: bold;
             border-radius: 30px;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            border: 2px solid #ff4d4d;
+            border: 2px solid #f77f00;
         }
         
         .register-btn:hover {
             background-color: transparent;
-            color: white;
+            color: #EAE2B7;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
@@ -179,13 +179,13 @@
         .about-text h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            color: #333;
+            color: #003049;
         }
         
         .about-text p {
             font-size: 1.1rem;
             line-height: 1.6;
-            color: #666;
+            color: #003049;
         }
         
         .about-image {
@@ -201,40 +201,54 @@
             height: 300px;
             border-radius: 50%;
             object-fit: cover;
-            border: 8px solid #ff4d4d;
+            border: 8px solid #f77f00;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         /* Sponsors Section */
         .sponsors-section {
             padding: 5rem 2rem;
-            background-color: #f0f0f0;
+            background-color: #fcbf49;
             text-align: center;
         }
         
         .sponsors-section h2 {
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: #333;
+            color: #003049;
         }
         
         .sponsors-slider {
             max-width: 1200px;
-            margin: 0 5rem 1.5rem auto;
+            margin: 0 auto;
             position: relative;
             overflow: hidden;
         }
         
         .sponsors-container {
             display: flex;
-            transition: transform 0.5s ease;
+            animation: scroll 20s linear infinite;
+            width: fit-content;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .sponsors-container-inner {
+            display: flex;
             padding: 2rem 0;
         }
         
         .sponsor-card {
             min-width: 250px;
             margin: 0 1rem;
-            background-color: white;
+            background-color: #EAE2B7;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 2rem;
@@ -259,46 +273,18 @@
         .sponsor-card h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: #003049;
         }
         
         .sponsor-card p {
             font-size: 0.9rem;
-            color: #777;
-        }
-        
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1rem;
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-        
-        .slider-btn:hover {
-            background-color: #e62e2e;
-        }
-        
-        .prev-btn {
-            left: 5px;
-        }
-        
-        .next-btn {
-            right: 75px;
+            color: #003049;
         }
         
         /* Footer */
         footer {
-            background-color: #333;
-            color: white;
+            background-color: #003049;
+            color: #EAE2B7;
             text-align: center;
             padding: 2rem;
         }
@@ -317,18 +303,18 @@
         .social-icon {
             width: 40px;
             height: 40px;
-            background-color: #555;
+            background-color: #f77f00;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #EAE2B7;
             text-decoration: none;
             transition: all 0.3s ease;
         }
         
         .social-icon:hover {
-            background-color: #ff4d4d;
+            background-color: #fcbf49;
             transform: translateY(-3px);
         }
         
@@ -345,7 +331,7 @@
         .indicator {
             width: 12px;
             height: 12px;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(234, 226, 183, 0.5);
             border-radius: 50%;
             margin: 0 5px;
             cursor: pointer;
@@ -353,7 +339,7 @@
         }
         
         .indicator.active {
-            background-color: #fff;
+            background-color: #EAE2B7;
         }
         
         /* Responsive Design */
@@ -385,7 +371,7 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
+                background-color: #003049;
                 padding: 1rem 0;
                 clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
                 transition: all 0.4s ease;
@@ -473,34 +459,79 @@
         </div>
     </section>
     
-    <!-- Sponsors Section -->
+    <!-- Sponsors Section with Continuous Slideshow -->
     <section class="sponsors-section">
         <h2>Our Sponsors</h2>
         <div class="sponsors-slider">
-            <button class="slider-btn prev-btn">&#8249;</button>
             <div class="sponsors-container">
-                <div class="sponsor-card">
-                    <img src="/api/placeholder/150/150" alt="Sponsor 1" class="sponsor-logo">
-                    <h3>Sponsor Name</h3>
-                    <p>Platinum Sponsor</p>
+                <!-- First set of sponsor cards -->
+                <div class="sponsors-container-inner">
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 1" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Platinum Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 2" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Gold Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 3" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Silver Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 4" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Bronze Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 5" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Bronze Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 6" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Bronze Sponsor</p>
+                    </div>
                 </div>
-                <div class="sponsor-card">
-                    <img src="/api/placeholder/150/150" alt="Sponsor 2" class="sponsor-logo">
-                    <h3>Sponsor Name</h3>
-                    <p>Gold Sponsor</p>
-                </div>
-                <div class="sponsor-card">
-                    <img src="/api/placeholder/150/150" alt="Sponsor 3" class="sponsor-logo">
-                    <h3>Sponsor Name</h3>
-                    <p>Silver Sponsor</p>
-                </div>
-                <div class="sponsor-card">
-                    <img src="/api/placeholder/150/150" alt="Sponsor 4" class="sponsor-logo">
-                    <h3>Sponsor Name</h3>
-                    <p>Bronze Sponsor</p>
+                
+                <!-- Duplicate set for continuous scrolling -->
+                <div class="sponsors-container-inner">
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 1" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Platinum Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 2" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Gold Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 3" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Silver Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 4" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Bronze Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 5" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Bronze Sponsor</p>
+                    </div>
+                    <div class="sponsor-card">
+                        <img src="/api/placeholder/150/150" alt="Sponsor 6" class="sponsor-logo">
+                        <h3>Sponsor Name</h3>
+                        <p>Bronze Sponsor</p>
+                    </div>
                 </div>
             </div>
-            <button class="slider-btn next-btn">&#8250;</button>
         </div>
     </section>
     
@@ -517,7 +548,7 @@
     </footer>
 
     <script>
-        // Completely revised slideshow functionality
+        // Hero Slideshow functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Hero Slideshow
             const slides = document.querySelectorAll('.slide');
@@ -558,33 +589,6 @@
             // Start the slideshow
             startSlideshow();
             
-            // Sponsors Slider
-            const sponsorsContainer = document.querySelector('.sponsors-container');
-            const sponsorCards = document.querySelectorAll('.sponsor-card');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            
-            let sponsorIndex = 0;
-            const cardWidth = 282; // card width + margin
-            
-            function moveSponsors() {
-                sponsorsContainer.style.transform = `translateX(${-sponsorIndex * cardWidth}px)`;
-            }
-            
-            prevBtn.addEventListener('click', () => {
-                sponsorIndex = Math.max(sponsorIndex - 1, 0);
-                moveSponsors();
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                const maxIndex = sponsorCards.length - Math.floor(sponsorsContainer.clientWidth / cardWidth);
-                sponsorIndex = Math.min(sponsorIndex + 1, Math.max(0, maxIndex));
-                moveSponsors();
-            });
-            
-            // Adjust on window resize
-            window.addEventListener('resize', moveSponsors);
-            
             // Mobile menu functionality
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const mainNav = document.querySelector('.main-nav');
@@ -598,9 +602,11 @@
             window.addEventListener('scroll', () => {
                 const header = document.querySelector('.main-header');
                 if (window.scrollY > 50) {
-                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                    header.style.backgroundColor = '#003049';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
                 } else {
-                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                    header.style.backgroundColor = '#003049';
+                    header.style.boxShadow = 'none';
                 }
             });
         });
