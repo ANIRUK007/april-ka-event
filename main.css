@@ -433,7 +433,7 @@ body {
 
 .spiky-star {
     width: 200px;
-    height: 200px;
+    height: 120px;
     background: #FFD700;
     clip-path: polygon(
         50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
@@ -505,7 +505,7 @@ body {
     height: 300px;
     border-radius: 50%;
     object-fit: cover;
-    border: 8px solid #f77f00;
+    border: 8px solid #ff7f51;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
@@ -531,17 +531,16 @@ body {
 /* Sponsors Section */
 .sponsors-section {
     padding: 5rem 2rem;
-    background-color: #fcbf49;
+    background-color: #e4b66b;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
-
 .section-badge {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: #d62828;
+    background-color: #dd9a4e;
     color: white;
     padding: 10px 20px;
     border-radius: 10px;
