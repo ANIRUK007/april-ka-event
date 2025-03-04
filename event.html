@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Fusion Fest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .slideshow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+            opacity: 0.8;
+        }
+        .scroll-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #000000 25%, #000000 100%);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #FBBF24;
+            border-radius: 50%;
+            left: -40px;
+            top: 10px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #FBBF24;
+            top: 0;
+            bottom: 0;
+            left: -30px;
+        }
+    </style>
+</head>
+<body class="bg-transparent text-gray-900 font-sans">
+    <!-- Slideshow Background Placeholder -->
+    <div id="slideshowContainer" class="slideshow-container"></div>
+    
+    <!-- Scroll Background -->
+    <div id="scrollBackground" class="scroll-background"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-black/50 backdrop-blur-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-white text-2xl font-bold">Cultural Fusion Fest</div>
+            <div class="space-x-6 text-white">
+                <a href="#home" class="hover:text-yellow-400">Home</a>
+                <a href="#events" class="hover:text-yellow-400">Events</a>
+                <a href="#tickets" class="hover:text-yellow-400">Tickets</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="min-h-screen flex items-center justify-center text-center relative z-10">
+        <div class="bg-black/60 p-12 rounded-xl text-white max-w-2xl">
+            <h1 class="text-5xl font-bold mb-6">Cultural Fusion Fest</h1>
+            <p class="text-xl mb-8">
+                A spectacular celebration blending traditional heritage with contemporary expression. 
+                Join us for an unforgettable journey through music, dance, and art.
+            </p>
+            <div class="space-x-4">
+                <a href="#tickets" class="bg-yellow-500 text-black px-6 py-3 rounded-full hover:bg-yellow-400 transition">
+                    Buy Tickets
+                </a>
+                <a href="#about" class="border border-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
+                    Explore Events
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About the Event Section -->
+    <section id="about" class="container mx-auto px-4 py-24 bg-transparent relative z-20">
+        <div class="text-center mb-12">
+            <h2 class="text-5xl font-bold text-gray-900">About the Event</h2>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="flex justify-center space-x-8 mb-12">
+                <div class="bg-yellow-500 p-10 rounded-2xl text-center shadow-xl transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-6xl font-bold text-black mb-4">30+</h3>
+                    <p class="text-xl text-black font-semibold">Cultural Stalls</p>
+                </div>
+                <div class="bg-yellow-500 p-10 rounded-2xl text-center shadow-xl transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-6xl font-bold text-black mb-4">50+</h3>
+                    <p class="text-xl text-black font-semibold">Performances</p>
+                </div>
+                <div class="bg-yellow-500 p-10 rounded-2xl text-center shadow-xl transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-6xl font-bold text-black mb-4">5000</h3>
+                    <p class="text-xl text-black font-semibold">Expected Audience</p>
+                </div>
+            </div>
+            
+            <!-- Event Date Buttons at the Bottom -->
+            <div class="flex space-x-4 mb-12">
+                <button id="btn3April" class="bg-yellow-500 text-black px-6 py-3 rounded-full hover:bg-yellow-400 transition font-semibold">
+                    3rd April 2024
+                </button>
+                <button id="btn4April" class="border border-yellow-500 text-yellow-500 px-6 py-3 rounded-full hover:bg-yellow-500 hover:text-black transition font-semibold">
+                    4th April 2024
+                </button>
+            </div>
+
+            <!-- Schedule Section -->
+            <div id="scheduleContainer" class="w-full max-w-4xl bg-black/60 rounded-xl p-8 text-white relative">
+                <div id="schedule3April" class="schedule-tab active">
+                    <h3 class="text-3xl font-bold mb-6 text-center">3rd April 2024 Schedule</h3>
+                    <div class="timeline relative pl-10">
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">10:00 AM - Opening Ceremony</h4>
+                            <p>Join us for the grand inauguration of Cultural Fusion Fest</p>
+                        </div>
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">12:00 PM - Traditional Dance Performance</h4>
+                            <p>Spectacular display of cultural dance forms from around the world</p>
+                        </div>
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">03:00 PM - Musical Ensemble</h4>
+                            <p>Fusion music performance blending different cultural traditions</p>
+                        </div>
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">06:00 PM - Cultural Food Festival</h4>
+                            <p>Taste diverse cuisines from around the globe</p>
+                        </div>
+                        <div class="timeline-item relative p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">08:00 PM - Evening Concert</h4>
+                            <p>Closing night with spectacular musical performances</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="schedule4April" class="schedule-tab hidden">
+                    <h3 class="text-3xl font-bold mb-6 text-center">4th April 2024 Schedule</h3>
+                    <div class="timeline relative pl-10">
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">11:00 AM - Art Exhibition Opening</h4>
+                            <p>Showcase of international art and cultural expressions</p>
+                        </div>
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">01:00 PM - Cultural Workshop</h4>
+                            <p>Interactive workshops exploring diverse cultural practices</p>
+                        </div>
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">04:00 PM - International Music Showcase</h4>
+                            <p>Global musical talents presenting unique performances</p>
+                        </div>
+                        <div class="timeline-item relative mb-6 p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">07:00 PM - Closing Ceremony</h4>
+                            <p>Farewell event celebrating cultural diversity</p>
+                        </div>
+                        <div class="timeline-item relative p-4 bg-yellow-500 text-black rounded-lg">
+                            <h4 class="font-bold text-xl mb-2">09:00 PM - Fireworks Display</h4>
+                            <p>Spectacular fireworks marking the end of the festival</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Schedule Toggle Logic
+        const btn3April = document.getElementById('btn3April');
+        const btn4April = document.getElementById('btn4April');
+        const schedule3April = document.getElementById('schedule3April');
+        const schedule4April = document.getElementById('schedule4April');
+
+        btn3April.addEventListener('click', () => {
+            btn3April.classList.add('bg-yellow-500', 'text-black');
+            btn3April.classList.remove('border', 'border-yellow-500', 'text-yellow-500');
+            
+            btn4April.classList.remove('bg-yellow-500', 'text-black');
+            btn4April.classList.add('border', 'border-yellow-500', 'text-yellow-500');
+            
+            schedule3April.classList.remove('hidden');
+            schedule4April.classList.add('hidden');
+        });
+
+        btn4April.addEventListener('click', () => {
+            btn4April.classList.add('bg-yellow-500', 'text-black');
+            btn4April.classList.remove('border', 'border-yellow-500', 'text-yellow-500');
+            
+            btn3April.classList.remove('bg-yellow-500', 'text-black');
+            btn3April.classList.add('border', 'border-yellow-500', 'text-yellow-500');
+            
+            schedule4April.classList.remove('hidden');
+            schedule3April.classList.add('hidden');
+        });
+
+        // Slideshow Logic
+        const images = [
+            'qawalli1.webp',
+            'instru1.jpg',
+            'event1.jpg',
+            'music1.jpg',
+        ];
+        const slideshowContainer = document.getElementById('slideshowContainer');
+        const scrollBackground = document.getElementById('scrollBackground');
+        let currentImageIndex = 0;
+
+        function changeBackground() {
+            slideshowContainer.style.backgroundImage = `url(${images[currentImageIndex]})`;
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        // Initial background
+        changeBackground();
+
+        // Change background every 5 seconds
+        setInterval(changeBackground, 5000);
+
+        // Scroll event to change background
+        window.addEventListener('scroll', () => {
+            const scrollThreshold = window.innerHeight * 0.5;
+            
+            if (window.scrollY > scrollThreshold) {
+                slideshowContainer.style.opacity = '0';
+                scrollBackground.style.opacity = '0.8';
+            } else {
+                slideshowContainer.style.opacity = '0.8';
+                scrollBackground.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+</html>
