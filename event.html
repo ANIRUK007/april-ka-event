@@ -48,6 +48,24 @@
             bottom: 0;
             left: -30px;
         }
+        .sponsors-slideshow {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .sponsors-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .sponsor-slide {
+            flex: 0 0 auto;
+            width: 25%;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="bg-transparent text-gray-900 font-sans">
@@ -72,7 +90,7 @@
     <!-- Hero Section -->
     <div class="min-h-screen flex items-center justify-center text-center relative z-10">
         <div class="bg-black/60 p-12 rounded-xl text-white max-w-2xl">
-            <h1 class="text-5xl font-bold mb-6">Cultural Fusion Fest</h1>
+            <h1 class="text-5xl font-bold mb-6">Meth Fiesta '25</h1>
             <p class="text-xl mb-8">
                 A spectacular celebration blending traditional heritage with contemporary expression. 
                 Join us for an unforgettable journey through music, dance, and art.
@@ -176,6 +194,48 @@
         </div>
     </section>
 
+    <section id="sponsors" class="container mx-auto px-4 py-24 bg-transparent relative z-20">
+        <div class="text-center mb-12">
+            <h2 class="text-5xl font-bold text-gray-900">Our Sponsors</h2>
+            <p class="text-xl text-gray-600 mt-4">Proud supporters of cultural diversity and artistic expression</p>
+        </div>
+        <div class="sponsors-slideshow">
+            <div class="sponsors-track" id="sponsorsTrack">
+                <div class="sponsor-slide">
+                    <div class="w-64 h-32 bg-white shadow-lg rounded-xl flex items-center justify-center p-6 transform hover:scale-105 transition-transform">
+                        <img src="/api/placeholder/200/100" alt="Sponsor 1" class="max-h-full max-w-full object-contain">
+                    </div>
+                </div>
+                <div class="sponsor-slide">
+                    <div class="w-64 h-32 bg-white shadow-lg rounded-xl flex items-center justify-center p-6 transform hover:scale-105 transition-transform">
+                        <img src="/api/placeholder/200/100" alt="Sponsor 2" class="max-h-full max-w-full object-contain">
+                    </div>
+                </div>
+                <div class="sponsor-slide">
+                    <div class="w-64 h-32 bg-white shadow-lg rounded-xl flex items-center justify-center p-6 transform hover:scale-105 transition-transform">
+                        <img src="/api/placeholder/200/100" alt="Sponsor 3" class="max-h-full max-w-full object-contain">
+                    </div>
+                </div>
+                <div class="sponsor-slide">
+                    <div class="w-64 h-32 bg-white shadow-lg rounded-xl flex items-center justify-center p-6 transform hover:scale-105 transition-transform">
+                        <img src="/api/placeholder/200/100" alt="Sponsor 4" class="max-h-full max-w-full object-contain">
+                    </div>
+                </div>
+                <div class="sponsor-slide">
+                    <div class="w-64 h-32 bg-white shadow-lg rounded-xl flex items-center justify-center p-6 transform hover:scale-105 transition-transform">
+                        <img src="/api/placeholder/200/100" alt="Sponsor 5" class="max-h-full max-w-full object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="bg-black text-white py-8 text-center">
+        <p>&copy; 2024 Cultural Fusion Fest. All Rights Reserved.</p>
+    </footer>
+
     <script>
         // Schedule Toggle Logic
         const btn3April = document.getElementById('btn3April');
@@ -212,6 +272,24 @@
             'event1.jpg',
             'music1.jpg',
         ];
+
+        const scrollBackgroundImage = "samantha-gades-fIHozNWfcvs-unsplash.jpg";
+
+window.addEventListener('scroll', () => {
+    const scrollThreshold = window.innerHeight * 0.5;
+    
+    if (window.scrollY > scrollThreshold) {
+        slideshowContainer.style.opacity = '0';
+        scrollBackground.style.opacity = '0.8';
+        // Set the background image for scroll background
+        scrollBackground.style.backgroundImage = `url(${scrollBackgroundImage})`;
+        scrollBackground.style.backgroundSize = 'cover';
+        scrollBackground.style.backgroundPosition = 'center';
+    } else {
+        slideshowContainer.style.opacity = '0.4';
+        scrollBackground.style.opacity = '0';
+    }
+});
         const slideshowContainer = document.getElementById('slideshowContainer');
         const scrollBackground = document.getElementById('scrollBackground');
         let currentImageIndex = 0;
@@ -239,6 +317,41 @@
                 scrollBackground.style.opacity = '0';
             }
         });
+
+        const sponsorsTrack = document.getElementById('sponsorsTrack');
+        const sponsorSlides = sponsorsTrack.children;
+        const slidesCount = sponsorSlides.length;
+        let currentIndex = 0;
+
+        function cloneSlides() {
+            // Clone first and last slides to create seamless loop
+            const firstSlide = sponsorSlides[0].cloneNode(true);
+            const lastSlide = sponsorSlides[slidesCount - 1].cloneNode(true);
+            sponsorsTrack.appendChild(firstSlide);
+            sponsorsTrack.insertBefore(lastSlide, sponsorsTrack.firstChild);
+        }
+
+        function slideSponsors() {
+            currentIndex++;
+            const offset = -(currentIndex * 25);
+            sponsorsTrack.style.transform = `translateX(${offset}%)`;
+
+            // Reset to create infinite loop
+            if (currentIndex >= slidesCount) {
+                setTimeout(() => {
+                    sponsorsTrack.style.transition = 'none';
+                    sponsorsTrack.style.transform = 'translateX(0%)';
+                    currentIndex = 0;
+                    setTimeout(() => {
+                        sponsorsTrack.style.transition = 'transform 0.5s ease';
+                    }, 50);
+                }, 500);
+            }
+        }
+
+        // Initialize cloned slides and start slideshow
+        cloneSlides();
+        setInterval(slideSponsors, 3000); 
     </script>
 </body>
 </html>
